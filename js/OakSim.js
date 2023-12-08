@@ -228,7 +228,7 @@ var CurContext = new ( function()
 		Context.Registers.Update();
 		document.getElementById("registers").innerHTML =
 			"<table>"
-			+ "<thead><tr><th>Register</th><th>Value</th></tr></thead>"
+			+ "<thead><tr><th>Register</th><th>Value</th><th>Bin</th></tr></thead>"
 			+ "<tbody>"
 			+ Context.Registers.Entries.reduce(
 				function(RegList, CurRegister)
@@ -236,12 +236,14 @@ var CurContext = new ( function()
 					return RegList
 						+ "<tr><td>"
 						+ CurRegister.Name
-						+ "</td>"
-						+ "<td>"
+						+ "</td><td>"
 						+ ( CurRegister.Changed ? "<span style=\"color:#f4bf75;\">" : "" )
 						+ "0x"
-						+ (CurRegister.Value >>> 0).toString(16)
+						+ (CurRegister.Value >>> 0).toString(16).padStart(8, "0")
 						+ ( CurRegister.Changed ? "</span>" : "" )
+						+ "</td><td>"
+						+ "0b"
+						+ (CurRegister.Value >>> 0).toString(2).padStart(32, "0")
 						+ "</td></tr>";
 				},
 				""
