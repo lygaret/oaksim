@@ -239,7 +239,8 @@ var CurContext = new ( function()
 						+ "</td>"
 						+ "<td>"
 						+ ( CurRegister.Changed ? "<span style=\"color:#f4bf75;\">" : "" )
-						+ CurRegister.Value.toString(16)
+						+ "0x"
+						+ (CurRegister.Value >>> 0).toString(16)
 						+ ( CurRegister.Changed ? "</span>" : "" )
 						+ "</td></tr>";
 				},
